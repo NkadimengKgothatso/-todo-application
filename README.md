@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Manager
 
-## Getting Started
+A simple task management web app built with Next.js and SQLite. Tasks can be created, edited, sorted, and archived (never deleted). Overdue tasks are highlighted automatically based on due date and status.
 
-First, run the development server:
+## Requirements
+
+- Node.js v20 or later (developed and tested on Node v22.23.2)
+
+## Setup
+
+```bash
+npm install
+```
+
+## Running the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The SQLite database is created automatically on first run at `data/tasks.db`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running tests
 
-## Learn More
+```bash
+npm test
+```
 
-To learn more about Next.js, take a look at the following resources:
+Runs all tests in `tests/` using Node's built-in test runner (`node --test`). No additional test framework required.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Create Task** — title (required), description, due date, topic, status
+- **Display Tasks** — active tasks shown on the home page, sortable by topic, status, or due date
+- **Edit Task** — update any field on an existing task
+- **Archive Task** — archived tasks are hidden from the active list but never deleted; viewable on a separate `/archived` page
+- **Overdue Indicator** — tasks past their due date (and not marked Complete) are visually flagged; this is calculated at display time, not stored in the database
 
-## Deploy on Vercel
+## Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [`docs/database.md`](docs/database.md) — database schema and design decisions
+- [`docs/third-party.md`](docs/third-party.md) — third-party libraries used and why

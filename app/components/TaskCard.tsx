@@ -2,36 +2,31 @@
 
 import { isOverdue } from '@/lib/overdue.js';
 
+const STATUS_ABBR = { 'Todo': 'TD', 'In-Progress': 'IP', 'Complete': 'CM' };
+const STATUS_CLASS = { 'Todo': 'status-todo', 'In-Progress': 'status-in-progress', 'Complete': 'status-complete' };
+
 export default function TaskCard({ task, onEdit, onArchive }) {
   const overdue = isOverdue(task);
+  const statusClass = STATUS_CLASS[task.status] || '';
 
   return (
-    <div
-      style={{
-        border: overdue ? '2px solid red' : '1px solid #ccc',
-        borderRadius: '8px',
-        padding: '1rem',
-        marginBottom: '0.75rem',
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-        <h3 style={{ margin: 0 }}>{task.title}</h3>
-        {overdue && (
-          <span style={{ color: 'red', fontWeight: 'bold', fontSize: '0.85rem' }}>
-            🔴 Overdue
-          </span>
-        )}
+    <div className={`ledger-card ${statusClass} ${overdue ? 'is-overdue' : ''}`}>
+      <div className="ledger-card-head">
+        <h3 className="ledger-card-title">{task.title}</h3>
+        <span className={`ledger-stamp ${overdue ? 'overdue' : ''}`}>
+          {overdue ? 'Overdue' : STATUS_ABBR[task.status] || '—'}
+        </span>
       </div>
 
-      {task.description && <p>{task.description}</p>}
+      {task.description && <p className="ledger-card-desc">{task.description}</p>}
 
-      <div style={{ fontSize: '0.85rem', color: '#555', display: 'flex', gap: '1rem' }}>
-        {task.dueDate && <span>Due: {task.dueDate}</span>}
-        {task.topic && <span>Topic: {task.topic}</span>}
-        <span>Status: {task.status}</span>
+      <div className="ledger-card-meta">
+        {task.dueDate && <span>DUE {task.dueDate}</span>}
+        {task.topic && <span>{task.topic.toUpperCase()}</span>}
+        <span>{task.status}</span>
       </div>
 
-      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem' }}>
+      <div className="ledger-card-actions">
         {onEdit && <button onClick={() => onEdit(task)}>Edit</button>}
         {onArchive && <button onClick={() => onArchive(task.id)}>Archive</button>}
       </div>

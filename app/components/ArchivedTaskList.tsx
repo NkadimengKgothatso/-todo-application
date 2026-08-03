@@ -16,8 +16,8 @@ export default function ArchivedTaskList() {
       });
   }, []);
 
-  if (loading) return <p>Loading archived tasks...</p>;
-  if (tasks.length === 0) return <p>No archived tasks.</p>;
+  if (loading) return <p className="ledger-empty">Loading archive…</p>;
+  if (tasks.length === 0) return <p className="ledger-empty">The archive is empty.</p>;
 
   return tasks.map((task) => <TaskCard key={task.id} task={task} />);
 }

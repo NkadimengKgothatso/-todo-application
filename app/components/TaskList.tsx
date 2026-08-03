@@ -37,15 +37,15 @@ export default function TaskList() {
     fetchTasks();
   }
 
-  if (loading) return <p>Loading tasks...</p>;
+  if (loading) return <p className="ledger-empty">Loading entries…</p>;
 
   return (
     <div>
-      <div style={{ marginBottom: '1rem' }}>
+      <div className="ledger-sort">
         <label>
-          Sort by:{' '}
+          Sort by
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="">Default (newest first)</option>
+            <option value="">Newest first</option>
             <option value="topic">Topic</option>
             <option value="status">Status</option>
             <option value="dueDate">Due Date</option>
@@ -58,7 +58,7 @@ export default function TaskList() {
       )}
 
       {tasks.length === 0 ? (
-        <p>No active tasks.</p>
+        <p className="ledger-empty">No open entries.</p>
       ) : (
         tasks.map((task) => (
           <TaskCard key={task.id} task={task} onEdit={handleEdit} onArchive={handleArchive} />

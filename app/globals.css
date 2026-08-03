@@ -1,26 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #16211D;
+  --ink-light: #1F2E27;
+  --parchment: #F4EEDE;
+  --parchment-dim: #E8E0CC;
+  --brass: #C08A3E;
+  --brass-dim: #9C6F30;
+  --sage: #7C9082;
+  --wine: #7A2E2E;
+  --text-on-ink: #EDE6D6;
+  --text-on-parchment: #20241F;
+  --text-muted: #6B6355;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--ink);
+  color: var(--text-on-ink);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.ledger-page {
+  min-height: 100vh;
+  padding: 3rem 1.5rem 5rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.ledger-masthead {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(237, 230, 214, 0.15);
+}
+
+.ledger-title {
+  font-family: 'Fraunces', serif;
+  font-size: 2.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--text-on-ink);
+}
+
+.ledger-subtitle {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--sage);
+  font-size: 1rem;
+  margin-top: 0.4rem;
+}
+
+.ledger-nav {
+  margin-top: 1.25rem;
+}
+
+.ledger-nav a {
+  color: var(--brass);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.ledger-nav a:hover,
+.ledger-nav a:focus-visible {
+  border-bottom-color: var(--brass);
+}
+
+.ledger-section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Forms ---------- */
+
+.ledger-form {
+  background: var(--ink-light);
+  border: 1px solid rgba(237, 230, 214, 0.1);
+  border-radius: 4px;
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.ledger-form h2, .ledger-form h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+  color: var(--text-on-ink);
+  font-size: 1.35rem;
+}
+
+.ledger-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: var(--sage);
+  letter-spacing: 0.02em;
+}
+
+.ledger-field input,
+.ledger-field textarea,
+.ledger-field select {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--parchment);
+  color: var(--text-on-parchment);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.95rem;
+}
+
+.ledger-field textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.ledger-field input:focus,
+.ledger-field textarea:focus,
+.ledger-field select:focus {
+  outline: none;
+  border-color: var(--brass);
+  box-shadow: 0 0 0 2px rgba(192, 138, 62, 0.25);
+}
+
+.ledger-error {
+  color: #E8A0A0;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.ledger-btn {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--brass);
+  color: var(--ink);
+  border: none;
+  border-radius: 3px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+.ledger-btn:hover:not(:disabled) {
+  background: var(--brass-dim);
+}
+
+.ledger-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ledger-btn-secondary {
+  background: transparent;
+  color: var(--sage);
+  border: 1px solid var(--sage);
+}
+
+.ledger-btn-secondary:hover {
+  background: rgba(124, 144, 130, 0.1);
+}
+
+.ledger-btn-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* ---------- Sort control ---------- */
+
+.ledger-sort {
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--sage);
+}
+
+.ledger-sort select {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--ink-light);
+  color: var(--text-on-ink);
+  border: 1px solid rgba(237, 230, 214, 0.2);
+  border-radius: 3px;
+  padding: 0.35rem 0.6rem;
+  margin-left: 0.5rem;
+}
+
+/* ---------- Task cards ---------- */
+
+.ledger-empty {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--sage);
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.ledger-card {
+  position: relative;
+  background: var(--parchment);
+  color: var(--text-on-parchment);
+  border-radius: 3px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--sage);
+}
+
+.ledger-card.status-todo { border-left-color: var(--brass); }
+.ledger-card.status-in-progress { border-left-color: var(--sage); }
+.ledger-card.status-complete { border-left-color: #4C6B57; }
+.ledger-card.is-overdue { border-left-color: var(--wine); }
+
+.ledger-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.ledger-card-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0;
+  color: var(--text-on-parchment);
+}
+
+.ledger-card-desc {
+  margin: 0.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.ledger-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+.ledger-card-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ledger-card-actions button {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  background: transparent;
+  border: 1px solid var(--sage);
+  color: var(--text-on-parchment);
+  border-radius: 3px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+
+.ledger-card-actions button:hover {
+  background: rgba(124, 144, 130, 0.15);
+}
+
+/* ---------- Status stamp (signature element) ---------- */
+
+.ledger-stamp {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--sage);
+}
+
+.ledger-card.status-todo .ledger-stamp { color: var(--brass); }
+.ledger-card.status-complete .ledger-stamp { color: #4C6B57; }
+
+.ledger-stamp.overdue {
+  color: var(--wine);
+  border-color: var(--wine);
+  border-radius: 3px;
+  width: auto;
+  height: auto;
+  padding: 0.2rem 0.5rem;
+  transform: rotate(-4deg);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.62rem;
 }

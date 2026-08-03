@@ -47,31 +47,31 @@ export default function CreateTaskForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '400px' }}>
-      <h2>Create Task</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <form onSubmit={handleSubmit} className="ledger-form">
+      <h2>New Entry</h2>
+      {error && <p className="ledger-error">{error}</p>}
 
-      <label>
+      <label className="ledger-field">
         Title *
         <input type="text" name="title" value={form.title} onChange={handleChange} required />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Description
         <textarea name="description" value={form.description} onChange={handleChange} />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Due Date
         <input type="date" name="dueDate" value={form.dueDate} onChange={handleChange} />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Topic
         <input type="text" name="topic" value={form.topic} onChange={handleChange} />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Status
         <select name="status" value={form.status} onChange={handleChange}>
           <option value="Todo">Todo</option>
@@ -80,8 +80,8 @@ export default function CreateTaskForm() {
         </select>
       </label>
 
-      <button type="submit" disabled={submitting}>
-        {submitting ? 'Creating...' : 'Create Task'}
+      <button type="submit" className="ledger-btn" disabled={submitting}>
+        {submitting ? 'Recording…' : 'Add to Ledger'}
       </button>
     </form>
   );

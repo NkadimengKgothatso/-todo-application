@@ -44,43 +44,31 @@ export default function EditTaskForm({ task, onDone, onCancel }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.75rem',
-        maxWidth: '400px',
-        border: '1px solid #999',
-        borderRadius: '8px',
-        padding: '1rem',
-        marginBottom: '1rem',
-      }}
-    >
-      <h3>Edit Task</h3>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <form onSubmit={handleSubmit} className="ledger-form">
+      <h3>Amend Entry</h3>
+      {error && <p className="ledger-error">{error}</p>}
 
-      <label>
+      <label className="ledger-field">
         Title *
         <input type="text" name="title" value={form.title} onChange={handleChange} required />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Description
         <textarea name="description" value={form.description} onChange={handleChange} />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Due Date
         <input type="date" name="dueDate" value={form.dueDate} onChange={handleChange} />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Topic
         <input type="text" name="topic" value={form.topic} onChange={handleChange} />
       </label>
 
-      <label>
+      <label className="ledger-field">
         Status
         <select name="status" value={form.status} onChange={handleChange}>
           <option value="Todo">Todo</option>
@@ -89,11 +77,11 @@ export default function EditTaskForm({ task, onDone, onCancel }) {
         </select>
       </label>
 
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
-        <button type="submit" disabled={submitting}>
-          {submitting ? 'Saving...' : 'Save Changes'}
+      <div className="ledger-btn-row">
+        <button type="submit" className="ledger-btn" disabled={submitting}>
+          {submitting ? 'Saving…' : 'Save Changes'}
         </button>
-        <button type="button" onClick={onCancel}>
+        <button type="button" className="ledger-btn ledger-btn-secondary" onClick={onCancel}>
           Cancel
         </button>
       </div>

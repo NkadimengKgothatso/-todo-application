@@ -4,13 +4,18 @@ import TaskList from './components/TaskList';
 
 export default function Home() {
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>Task Manager</h1>
-      <nav style={{ marginBottom: '1rem' }}>
-        <Link href="/archived">View Archived Tasks</Link>
-      </nav>
+    <main className="ledger-page">
+      <div className="ledger-masthead">
+        <h1 className="ledger-title">The Task Ledger</h1>
+        <p className="ledger-subtitle">a running record of coursework, kept honestly</p>
+        <nav className="ledger-nav">
+          <Link href="/archived">View the archive →</Link>
+        </nav>
+      </div>
+
       <CreateTaskForm />
-      <hr style={{ margin: '2rem 0' }} />
+
+      <p className="ledger-section-label">Open Entries</p>
       <TaskList />
     </main>
   );

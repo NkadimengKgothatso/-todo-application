@@ -9,6 +9,10 @@
 ## Note on an earlier decision
 
 Prisma was initially scaffolded early in the project but removed once it was confirmed the assignment brief only required SQLite, not an ORM specifically. Removing it kept the dependency tree smaller and avoided an unnecessary migration/schema-generation layer for a single-table application.
+
 ---
  
 The preceding document was generated with the assistance of the following: Claude-Web[Claude Sonnet 5]
+
+ 
+

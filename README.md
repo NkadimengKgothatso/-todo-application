@@ -6,6 +6,13 @@ A simple task management web app built with Next.js and SQLite. Tasks can be cre
 
 - Node.js v20 or later (developed and tested on Node v22.23.2)
 
+## Clone the Repository
+ 
+```bash
+git clone https://github.com/NkadimengKgothatso/-todo-application.git
+cd -todo-application
+```
+
 ## Setup
 
 ```bash

@@ -38,3 +38,6 @@ CREATE TABLE tasks (
 - **No `overdue` column.** Overdue status is a derived property (`dueDate < today AND status != 'Complete'`), calculated at read/render time rather than stored. Storing it would risk it becoming stale (e.g. a task's overdue flag not updating the moment midnight passes).
 - **No delete operations.** The assignment requires archiving, not deletion, so there is no `DELETE` statement anywhere in the codebase — only `archived = 1` updates.
 - **No relationships / no additional tables.** The assignment only requires tracking tasks for a single implicit user, so a single flat table is sufficient. No `users` table or foreign keys were needed.
+---
+ 
+The preceding document was generated with the assistance of the following: Claude-Web[Claude Sonnet 5]

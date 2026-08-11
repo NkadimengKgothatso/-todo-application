@@ -12,6 +12,10 @@ AI assistance was used as a development aid throughout the project. The generate
 
 This declaration is provided to transparently document the use of AI assistance during the development of this repository.
 
-## AI Tool Link
+### AI Tool Link
 
 [Claude Web — Official Website](https://claude.ai/)
+
+
+### Conversation Link
+https://claude.ai/chat/4cdf8362-9fdd-49b7-bc2d-27558a0a8f02
